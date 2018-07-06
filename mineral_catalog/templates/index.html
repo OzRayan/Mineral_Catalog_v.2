@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<h1 class="logo__name text-centered">Welcome!</h1>
+<a class="minerals__anchor view__all" href="{% url 'minerals:mineral_list' %}">View all minerals</a>
+{% endblock %}
