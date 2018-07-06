@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% load static %}
-{% load minerals_extras %}
+{% load extra_tags %}
 
 {% block content %}
 <div class="grid-100 mineral__container">    
@@ -15,7 +15,7 @@
             {% for key, value in mineral.items %}
                 {% if value and key in labels %}
                 <tr>
-                    <td class="mineral__category">{{ key|title|remove_underscore }}</td>
+                    <td class="mineral__category">{{ key }}</td>
                     <td>{{ value|safe }}</td>
                 </tr>
                 {% endif %}
