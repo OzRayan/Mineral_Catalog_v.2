@@ -14,8 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.conf.urls import url, include, patterns
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
+from . import views
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # url(r'^mineral/', include('minerals.urls', namespace='minerals')),
+    url(r'^$', views.index, name='index'),
+    url('admin/', admin.site.urls),
 ]
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += patterns('',
+                            url(r'^__debug__/',
+                                include(debug_toolbar.urls)),
+    )
+
+urlpatterns += staticfiles_urlpatterns()
