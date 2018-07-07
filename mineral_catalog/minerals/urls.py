@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'minerals'
 urlpatterns = [
-    url(r'^$', views.minerals_list, name='mineral_list'),]
+    url(r'^$', views.mineral_list, name='mineral_list'),]
 #     url(r'(?P<mineral_id>\d+)/$', views.mineral_detail, name='mineral_detail'),
 #     url(r'random/', views.random_mineral, name='random_mineral'),
 # ]

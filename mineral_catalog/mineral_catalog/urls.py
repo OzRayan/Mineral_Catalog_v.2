@@ -21,7 +21,7 @@ from . import views
 
 
 urlpatterns = [
-    # url(r'^mineral/', include('minerals.urls', namespace='minerals')),
+    url(r'^mineral/', include('minerals.urls', namespace='minerals')),
     url(r'^$', views.index, name='index'),
     url('admin/', admin.site.urls),
 ]
