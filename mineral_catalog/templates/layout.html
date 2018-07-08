@@ -36,7 +36,7 @@
         {% block content %}{% endblock %}
     </div>
     <div class="minerals__random">
-        <a class="minerals__anchor" href="#">Show a random mineral</a>
+        <a class="minerals__anchor" href="{% url 'minerals:random_mineral' %}">Show a random mineral</a>
     </div>
 </body>
 </html>

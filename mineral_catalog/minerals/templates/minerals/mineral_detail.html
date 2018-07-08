@@ -12,11 +12,11 @@
     <div class="mineral__table-container">
         {% block table %}
         <table class="mineral__table">
-            {% for obj in labels %}
-                {% if obj in mineral  %}
+            {% for field in mineral.items %}
+                {% if field.0 in labels  %}
                 <tr>
-                    <td class="mineral__category">{{ mineral|get_item|title|clean_title }}</td>
-                    <td>{{ obj|safe }}</td>
+                    <td class="mineral__category">{{ field.0|title }}</td>
+                    <td>{{ field.1|safe }}</td>
                 </tr>
                 {% endif %}
             {% endfor %}

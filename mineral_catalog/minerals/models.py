@@ -27,3 +27,13 @@ class Mineral(models.Model):
     crystal_habit = models.CharField(max_length=255, blank=True)
     specific_gravity = models.CharField(max_length=255, blank=True)
 
+
+LABELS = [
+    'category',
+    'formula',
+    'strunz_classification',
+    'unit_cell',
+    'color',
+    'crystal_symmetry',
+    'mohs_scale_hardness',
+]
