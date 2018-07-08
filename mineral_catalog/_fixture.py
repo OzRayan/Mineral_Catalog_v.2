@@ -5,9 +5,13 @@ from django.core.wsgi import get_wsgi_application
 
 
 def populate_db():
+    """Populates db database. This should be done outside of project files
+    and only called once at first launch"""
+    # Setting up django default environment so Django can find project files
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mineral_catalog.settings")
     get_wsgi_application()
 
+    # Setting up json file local directory path with absolute path
     local_directory = os.path.dirname(os.path.abspath(__file__))
     json_file = os.path.join(local_directory, 'assets/json/minerals.json')
 

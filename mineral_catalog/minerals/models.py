@@ -3,7 +3,7 @@ from django.db import models
 
 class Mineral(models.Model):
     """Model class with all the mineral details
-
+        All fields has a fallback to blank attribute
     :inherit: - models.Model from django.db
     """
     name = models.CharField(max_length=255, blank=True)
@@ -27,13 +27,3 @@ class Mineral(models.Model):
     crystal_habit = models.CharField(max_length=255, blank=True)
     specific_gravity = models.CharField(max_length=255, blank=True)
 
-
-LABELS = [
-    'category',
-    'formula',
-    'strunz_classification',
-    'unit_cell',
-    'color',
-    'crystal_symmetry',
-    'mohs_scale_hardness',
-]

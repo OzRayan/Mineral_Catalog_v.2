@@ -26,12 +26,12 @@ urlpatterns = [
     url('admin/', admin.site.urls),
 ]
 
-
+# Setting up urlpatterns for django-debug-toolbar(version==1.9.1)
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += patterns('',
                             url(r'^__debug__/',
                                 include(debug_toolbar.urls)),
-    )
+                            )
 
 urlpatterns += staticfiles_urlpatterns()

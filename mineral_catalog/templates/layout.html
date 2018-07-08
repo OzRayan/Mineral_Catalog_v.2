@@ -21,6 +21,7 @@
     <!-- /BACKGROUND -->
 
     <div class="bounds">
+        <!-- Main logo -->
         <div class="grid-100">
             <a href="{% url 'index' %}">
                 <svg class="logo" viewBox="0 0 127.6 84.8" preserveAspectRation="xMinYMin meet">
@@ -33,10 +34,14 @@
             
             <p class="logo__text text-centered">They are <span class="tool" data-tip="Wikipedia"><a href="https://en.wikipedia.org/wiki/Sedimentary_rock" target="_blank">not rocks</a></span> but they rock</p>
         </div>
+        <!-- Mineral content -->
         {% block content %}{% endblock %}
     </div>
+
+    <!-- Random mineral button -->
     <div class="minerals__random">
         <a class="minerals__anchor" href="{% url 'minerals:random_mineral' %}">Show a random mineral</a>
     </div>
+
 </body>
 </html>

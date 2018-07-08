@@ -2,26 +2,31 @@
 {% load static %}
 {% load extra_tags %}
 
+
 {% block content %}
-<div class="grid-100 mineral__container">    
+<div class="grid-100 mineral__container">
+    <!-- Mineral Table/ Mineral Image -->
     <div class="mineral__image-bg">
         <img class="mineral__image" src="{% static 'img' %}/{{ mineral.name }}.jpg" alt="{{ mineral.name }}">
         <p class="mineral__caption">{{ mineral.image_caption }}</p>
     </div>
+
     <h1 class="mineral__name mineral__detail_header">{{ mineral.name }}</h1>
+    <!-- Mineral description -->
     <div class="mineral__table-container">
-        {% block table %}
         <table class="mineral__table">
             {% for field in mineral.items %}
-                {% if field.0 in labels  %}
+                <!-- Checks if field exist in required field labels using check filter-->
+                {% if field.0|check  %}
                 <tr>
-                    <td class="mineral__category">{{ field.0|title }}</td>
+                    <!-- Remove _ from field title using clean_title filter -->
+                    <td class="mineral__category">{{ field.0|title|clean_title }}</td>
+                    <!-- Displaying field values using safe filter -->
                     <td>{{ field.1|safe }}</td>
                 </tr>
                 {% endif %}
             {% endfor %}
         </table>
-        {% endblock table %}
     </div>
 </div>
 {% endblock %}
