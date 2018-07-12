@@ -302,3 +302,9 @@ h1 {
 a:active, a:hover {
     text-decoration-line: none;
 }
+
+.list-group-item {
+    background-color: transparent;
+    border-color: transparent;
+    margin: 0 -10px;
+}
