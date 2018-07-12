@@ -58,11 +58,11 @@ img.back_g {
 }
 
 .logo {
-    fill: #90f;
+    fill: rgba(255, 255, 255, 0.47);
 }
 
 .logo--middle {
-    fill: #019;
+    fill: rgba(255, 255, 255, 0.83);
 }
 
 .mineral__category {
@@ -96,8 +96,8 @@ img.back_g {
 }
 
 .minerals__random {
-    background-color: #3bf;
-    box-shadow: 0 0 80px 35px #3bf;
+    background-color: rgba(230, 230, 230, 0.88);
+    box-shadow: 0 0 80px 35px rgba(230, 230, 230, 0.94);
 }
 
 .minerals__random 
@@ -106,7 +106,7 @@ img.back_g {
     border-bottom-width: 0;
     border-top-width: 0;
     border-right-width: 15px;
-    background-color: #3bf;
+    background-color: rgba(230, 230, 230, 0.3);
     border-color: #019;
     color: #019;    
     border-radius: 25px 25px 25px 25px;
@@ -142,6 +142,7 @@ img.back_g {
 
 .view__all:hover {
     border-radius: 14px;
+    font-size: 104%;
 }
 
 .mineral__image-bg {
@@ -262,4 +263,42 @@ span.tool::before {
 span.tool::after {
     bottom: 155%;
     font-size: 65%;
+}
+
+.my-fix {
+    position: fixed;
+    background-color: rgba(200, 200, 200, 0.4)!important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.minerals__container {
+    margin-top: 9%;
+}
+
+.custom {
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 1px #c9c9c9,
+               0 3px 2px #bbb,
+               0 4px 3px #b9b9b9,
+               0 5px 4px #aaa,
+               0 6px 6px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+h1 {
+    color: rgba(255, 255, 255, 0.86);
+    letter-spacing: 1rem;
+    text-decoration-line: none;
+}
+
+a:active, a:hover {
+    text-decoration-line: none;
 }
