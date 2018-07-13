@@ -22,10 +22,7 @@
     <div class="page-bg">
     </div>
 
-
     <nav class="navbar navbar-expand-md navbar-dark bg-light my-fix mb-4 py-4">
-
-
         <!-- Main logo -->
         <div class="col-sm-1 d-flex grid-100">
             <a href="{% url 'index' %}">
@@ -36,6 +33,7 @@
                 </svg>
             </a>
         </div>
+
         <div class="col-sm-6 d-flex justify-content-sm-start">
             <a href="{% url 'minerals:mineral_list' %}">
                 <h1 class="text-centered display-1 font-weight-bold custom"
@@ -54,22 +52,23 @@
         <!--</div>-->
 
         <div class="col-sm-4 d-flex justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
-
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                  <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
 
-
-
-    <!-- /BACKGROUND -->
-
-
     </nav>
 
+    <div  class="col-sm-12 d-flex justify-content-sm-between alph">
+            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+            <p>{{ letter }}</p>
+            {% endfor %}
+
+    </div>
 
     <div class="bounds">
+
         <!-- Mineral content -->
         {% block content %}{% endblock %}
     </div>
