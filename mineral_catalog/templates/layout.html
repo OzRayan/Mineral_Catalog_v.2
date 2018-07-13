@@ -17,7 +17,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
+<body style="position: relative;">
     <!-- BACKGROUND WITH BLUR -->
     <div class="page-bg">
     </div>
@@ -58,14 +58,21 @@
             </form>
         </div>
 
+
+        {% block alphabet_list %}
+        <div  class="col-sm-12 d-flex justify-content-sm-between alph">
+            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWYXZ" %}
+                {% if alpha == letter %}
+                    <a class="text-primary font-weight-bold h3 disabled" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
+                {% else %}
+                    <a class="text-white font-weight-normal h3" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endblock %}
     </nav>
 
-    <div  class="col-sm-12 d-flex justify-content-sm-between alph">
-            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
-            <p>{{ letter }}</p>
-            {% endfor %}
 
-    </div>
 
     <div class="bounds">
 

@@ -1,7 +1,9 @@
 import random
-from django.shortcuts import render
+from django.shortcuts import render, Http404
 
 from .models import Mineral
+
+ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWYXZ'
 
 
 def mineral_detail(request, pk):
@@ -12,6 +14,24 @@ def mineral_detail(request, pk):
     mineral = Mineral.objects.filter(id=pk).values()[0]
     return render(request, 'minerals/mineral_detail.html',
                   {'mineral': mineral})
+
+
+def mineral_by_alphabet(request, alpha):
+    try:
+        minerals = Mineral.objects.filter(name__startswith=alpha)
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals, 'alpha': alpha, 'alphabet': ALPHABET})
+
+
+def mineral_by_a(request):
+    try:
+        minerals = Mineral.objects.filter(name__startswith="A")
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals})
 
 
 def random_mineral(request):

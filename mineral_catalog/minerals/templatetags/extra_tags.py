@@ -1,5 +1,6 @@
 from django import template
 
+
 register = template.Library()
 
 # Displayed fields for mineral
@@ -25,3 +26,5 @@ def clean_title(title):
 def check(field):
     if field in LABELS:
         return True
+
+

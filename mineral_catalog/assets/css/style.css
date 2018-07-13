@@ -271,24 +271,27 @@ span.tool::after {
     top: 0;
     left: 0;
     width: 100%;
+    height: 12%;
     z-index: 1;
 }
 
 .alph {
-    position: fixed;
+    position: absolute;
     background-color: transparent;
     padding: 0.7% 6% 0.6% 6%;
     border: 0 solid transparent;
     background-color:  rgba(200, 200, 200, 0.4);
-    text: center;
     width: 100%;
-    top: 20.6%;
+    top: 100%;
     left: 0;
     z-index: 1;
+    color: #efefef;
+    text-shadow: 1px 3px 3px #666;
+    font-weight: 500;
 }
 
 .minerals__container {
-    margin-top: 12%;
+    margin-top: 13%;
 }
 
 .custom {
