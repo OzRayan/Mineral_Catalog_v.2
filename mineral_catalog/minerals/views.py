@@ -1,4 +1,5 @@
 import random
+from django.db.models import CharField, Q
 from django.shortcuts import render, Http404
 
 from .models import Mineral
@@ -18,11 +19,28 @@ def mineral_detail(request, pk):
 
 def mineral_by_alphabet(request, alpha):
     try:
+        # noinspection PyUnresolvedReferences
         minerals = Mineral.objects.filter(name__startswith=alpha)
+    # noinspection PyUnresolvedReferences
     except Mineral.DoesNotExist:
         raise Http404
     return render(request, 'minerals/mineral_list.html',
                   {'minerals': minerals, 'alpha': alpha, 'alphabet': ALPHABET})
+
+
+def mineral_search(request):
+    term = request.GET.get('q')
+    # noinspection PyUnresolvedReferences
+    fields = [f for f in Mineral._meta.fields if isinstance(f, CharField)]
+    queries = [Q(**{f.name + '__icontains': term}) for f in fields]
+
+    query_set = Q()
+    for query in queries:
+        query_set = query_set | query
+    # noinspection PyUnresolvedReferences
+    minerals = Mineral.objects.filter(query_set)
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals})
 
 
 def mineral_by_a(request):

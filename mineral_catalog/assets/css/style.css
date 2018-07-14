@@ -146,7 +146,7 @@ img.back_g {
 }
 
 .mineral__image-bg {
-    background-color: rgba(200, 220, 220, 0.7);
+    background-color: transparent!important;
 }
 
 .mineral__table {
@@ -166,7 +166,7 @@ h1, h1 a {
 }
 
 .mineral__image {
-    border: solid 1px #09f;
+    border: solid 0 #09f;
     border-radius: 8px 8px 8px 8px;
     transition: transform 450ms ease-in-out;
 }
@@ -323,4 +323,9 @@ a:active, a:hover {
     background-color: transparent;
     border-color: transparent;
     margin: 0 -10px;
+}
+
+.dis {
+    color: #019!important;
+    font-style: bold;
 }

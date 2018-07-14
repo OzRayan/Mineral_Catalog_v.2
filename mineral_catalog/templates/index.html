@@ -2,20 +2,6 @@
 {% load static %}
 
 
-{% block alphabet_list %}
-
-<div  class="col-sm-12 d-flex justify-content-sm-between alph">
-    {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWYXZ" %}
-        {% if letter == "A" %}
-            <a class="text-primary font-weight-bold h3 disabled" href="{% url 'minerals:mineral_alpha' %}">{{ letter }}</a>
-        {% else %}
-            <a class="text-white font-weight-normal h3" href="{% url 'minerals:mineral_alpha' %}">{{ letter }}</a>
-        {% endif %}
-    {% endfor %}
-</div>
-
-{% endblock %}
-
 {% block content %}
 <!-- Home page -->
 <!-- Minerals list -->

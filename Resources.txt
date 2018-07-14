@@ -1,0 +1,2 @@
+#1 Search queries
+https://stackoverflow.com/questions/1866847/searching-all-fields-in-a-table-in-django
