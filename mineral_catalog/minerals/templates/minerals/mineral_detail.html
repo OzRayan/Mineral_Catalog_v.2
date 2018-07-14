@@ -10,20 +10,22 @@
         <img class="mineral__image" src="{% static 'img' %}/{{ mineral.name }}.jpg" alt="{{ mineral.name }}">
         <p class="mineral__caption">{{ mineral.image_caption }}</p>
     </div>
-
-    <h1 class="mineral__name mineral__detail_header">{{ mineral.name }}</h1>
+    <!-- Mineral name with wikipedia link -->
+    <a href="https://en.wikipedia.org/wiki/{{ mineral.name }}" target="_blank">
+        <h1 class="mineral__name mineral__detail_header">{{ mineral.name }}</h1>
+    </a>
     <!-- Mineral description -->
     <div class="mineral__table-container">
         <table class="mineral__table">
             {% for field in mineral.items %}
                 <!-- Checks if field exist in required field labels using check filter-->
                 {% if field.0|check  %}
-                <tr>
-                    <!-- Remove _ from field title using clean_title filter -->
-                    <td class="mineral__category">{{ field.0|title|clean_title }}</td>
-                    <!-- Displaying field values using safe filter -->
-                    <td>{{ field.1|safe }}</td>
-                </tr>
+                    {% if field.1 != '' %}
+                        <tr>
+                            <td class="mineral__category">{{ field.0|title|clean_title }}</td>
+                            <td>{{ field.1|safe }}</td>
+                        </tr>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </table>

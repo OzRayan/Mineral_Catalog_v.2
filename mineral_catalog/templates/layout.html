@@ -53,12 +53,12 @@
 
         <div class="col-sm-4 d-flex justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
             <form method="GET" action="{% url 'minerals:mineral_search" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2"
+                <input class="form-control mr-sm-2 frame"
                        type="search"
-                       placeholder="Search..."
+                       placeholder="Find..."
                        aria-label="Search"
                        name="q">
-                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                 <button class="btn btn-outline-light my-2 my-sm-0 gomb" type="submit">Go</button>
             </form>
         </div>
 
@@ -67,7 +67,7 @@
         <div  class="col-sm-12 d-flex justify-content-sm-between alph">
             {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWYXZ" %}
                 {% if alpha == letter %}
-                    <a class="text-primary font-weight-bold h3 disabled dis" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
+                    <a class="text-primary font-weight-bold h3 dis" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
                 {% else %}
                     <a class="text-white font-weight-normal h3" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
                 {% endif %}

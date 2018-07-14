@@ -12,6 +12,12 @@ LABELS = [
     'color',
     'crystal_symmetry',
     'mohs_scale_hardness',
+    'group',
+    'optical_properties',
+    'crystal_habit',
+    'specific_gravity',
+    'crystal_system',
+    'luster',
 ]
 
 

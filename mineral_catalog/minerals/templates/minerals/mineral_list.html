@@ -4,10 +4,18 @@
 {% block content %}
 <!-- Minerals list -->
 <div class="grid-100">
+    <!-- I tried to fix the list items cut off on end of 1st column or second
+    with flex property,
+    the buttom part of the item continues on the next column top -->
     <ul class="minerals__container">
         {% for mineral in minerals %}
         <li class=" list-group-item">
-            <a class="minerals__anchor" href="{% url 'minerals:mineral_detail' pk=mineral.id %}">{{ mineral.name }}</a>
+            <a class="minerals__anchor"
+               href="{% url 'minerals:mineral_detail' pk=mineral.id %}"
+               {% if minerals.count == 1 %}
+               style="display: inline-block;"
+               {% endif %}>{{ mineral.name }}
+            </a>
         </li>
         {% endfor %}
     </ul>
