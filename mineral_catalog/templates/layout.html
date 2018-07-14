@@ -58,7 +58,7 @@
                        placeholder="Find..."
                        aria-label="Search"
                        name="q">
-                 <button class="btn btn-outline-light my-2 my-sm-0 gomb" type="submit">Go</button>
+                 <button class="btn btn-outline-light my-2 my-sm-0 gomb" type="submit">&#128269;</button>
             </form>
         </div>
 
@@ -69,7 +69,7 @@
                 {% if alpha == letter %}
                     <a class="text-primary font-weight-bold h3 dis" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
                 {% else %}
-                    <a class="text-white font-weight-normal h3" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
+                    <a class="text-white font-weight-normal h3 off" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
                 {% endif %}
             {% endfor %}
         </div>
