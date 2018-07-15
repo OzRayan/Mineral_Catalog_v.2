@@ -28,12 +28,61 @@ def mineral_by_alphabet(request, alpha):
                   {'minerals': minerals, 'alpha': alpha, 'alphabet': ALPHABET})
 
 
+def mineral_by_group(request, group):
+    try:
+        # noinspection PyUnresolvedReferences
+        minerals = Mineral.objects.filter(group=group)
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals})
+
+
+def mineral_by_color(request, color):
+    try:
+        # noinspection PyUnresolvedReferences
+        minerals = Mineral.objects.filter(color=color)
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals})
+
+
+def mineral_by_crystal_habit(request, crystal_habit):
+    try:
+        # noinspection PyUnresolvedReferences
+        minerals = Mineral.objects.filter(crystal_habit=crystal_habit)
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals})
+
+
+def mineral_by_crystal_system(request, crystal_system):
+    try:
+        # noinspection PyUnresolvedReferences
+        minerals = Mineral.objects.filter(crystal_system=crystal_system)
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals})
+
+
+def mineral_by_optical_properties(request, optical_properties):
+    try:
+        # noinspection PyUnresolvedReferences
+        minerals = Mineral.objects.filter(optical_properties=optical_properties)
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals})
+
+
 def mineral_search(request):
     term = request.GET.get('q')
     # noinspection PyUnresolvedReferences
-    fields = [f for f in Mineral._meta.fields if isinstance(f, CharField)]
-    queries = [Q(**{f.name + '__icontains': term}) for f in fields]
-
+    fields = [field for field in Mineral._meta.fields if isinstance(field, CharField)]
+    queries = [Q(**{field.name + '__icontains': term}) for field in fields]
     query_set = Q()
     for query in queries:
         query_set = query_set | query
