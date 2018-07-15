@@ -292,7 +292,7 @@ span.tool::after {
 .alph {
     position: absolute;
     background-color: transparent;
-    padding: 0.7% 6% 0.6% 6%;
+    padding: 0.7% 6% 0.6% 14%;
     border: 0 solid transparent;
     background-color:  rgba(200, 200, 200, 0.4);
     width: 100%;
@@ -302,6 +302,11 @@ span.tool::after {
     color: #efefef;
     text-shadow: 1px 3px 3px #666;
     font-weight: 500;
+}
+
+.drop_poz {
+    top: 100%;
+    left: 0;
 }
 
 .minerals__container {
