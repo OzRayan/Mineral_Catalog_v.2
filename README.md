@@ -1,4 +1,4 @@
-# Mineral_Catalog_v.1
+# Mineral_Catalog_v.2
 
 - #### Mineral Catalog, over 800 minerals list, built in Django with SQLite3 database. 
 - #### User can choose randomly any mineral or scroll through the list of minerals.
