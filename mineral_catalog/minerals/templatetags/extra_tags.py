@@ -5,6 +5,7 @@ from minerals.models import Mineral
 
 register = template.Library()
 
+
 # Displayed fields for mineral
 LABELS = [
     'category',
@@ -36,11 +37,14 @@ def check(field):
         return True
 
 
-@register.inclusion_tag('minerals/mineral_groups.html')
-def mineral_group_list(current_group=None):
+@register.simple_tag
+def filters():
+    return FILTERS
+
+
+@register.inclusion_tag('minerals/group_list.html')
+def group_list(gr):
     """Returns dict of mineral groups to display in filter"""
-    groups = (Mineral.objects.values_list('group', flat=True)
-                             .distinct())
-    groups = list(groups)
-    groups.sort()
-    return {'groups': groups, 'current_group': current_group}
+    groups = Mineral.objects.values_list('group', flat=True).distinct()
+    return {'groups': groups, 'gr': gr}
+

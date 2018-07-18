@@ -4,20 +4,26 @@ from django.shortcuts import render, Http404
 
 from .models import Mineral
 
-ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWYXZ'
-
 
 def mineral_detail(request, pk):
-    """Mineral detail view, selects a Mineral by id
+    """Mineral detail view
+    :input: - pk - mineral id
     :return: - mineral_detail.html + dictionary of mineral values
     """
     # noinspection PyUnresolvedReferences
-    mineral = Mineral.objects.filter(id=pk).values()[0]
+    try:
+        mineral = Mineral.objects.filter(id=pk).values()[0]
+    except Mineral.DoesNotExist:
+        raise Http404
     return render(request, 'minerals/mineral_detail.html',
                   {'mineral': mineral})
 
 
 def mineral_by_alphabet(request, alpha):
+    """Mineral alphabet view
+    :input: - alpha - mineral which starts with the letter alpha
+    :return: - mineral_list.html + dictionary of mineral startswith alpha
+    """
     try:
         # noinspection PyUnresolvedReferences
         minerals = Mineral.objects.filter(name__startswith=alpha)
@@ -25,60 +31,29 @@ def mineral_by_alphabet(request, alpha):
     except Mineral.DoesNotExist:
         raise Http404
     return render(request, 'minerals/mineral_list.html',
-                  {'minerals': minerals, 'alpha': alpha, 'alphabet': ALPHABET})
+                  {'minerals': minerals, 'alpha': alpha})
 
 
 def mineral_by_group(request, group):
+    """Mineral group view
+    :input: - group - group name
+    :return: - mineral_list.html + dictionary of mineral objects
+    """
     try:
         # noinspection PyUnresolvedReferences
         minerals = Mineral.objects.filter(group=group)
     except Mineral.DoesNotExist:
         raise Http404
     return render(request, 'minerals/mineral_list.html',
-                  {'minerals': minerals})
-
-
-def mineral_by_color(request, color):
-    try:
-        # noinspection PyUnresolvedReferences
-        minerals = Mineral.objects.filter(color=color)
-    except Mineral.DoesNotExist:
-        raise Http404
-    return render(request, 'minerals/mineral_list.html',
-                  {'minerals': minerals})
-
-
-def mineral_by_crystal_habit(request, crystal_habit):
-    try:
-        # noinspection PyUnresolvedReferences
-        minerals = Mineral.objects.filter(crystal_habit=crystal_habit)
-    except Mineral.DoesNotExist:
-        raise Http404
-    return render(request, 'minerals/mineral_list.html',
-                  {'minerals': minerals})
-
-
-def mineral_by_crystal_system(request, crystal_system):
-    try:
-        # noinspection PyUnresolvedReferences
-        minerals = Mineral.objects.filter(crystal_system=crystal_system)
-    except Mineral.DoesNotExist:
-        raise Http404
-    return render(request, 'minerals/mineral_list.html',
-                  {'minerals': minerals})
-
-
-def mineral_by_optical_properties(request, optical_properties):
-    try:
-        # noinspection PyUnresolvedReferences
-        minerals = Mineral.objects.filter(optical_properties=optical_properties)
-    except Mineral.DoesNotExist:
-        raise Http404
-    return render(request, 'minerals/mineral_list.html',
-                  {'minerals': minerals})
+                  {'minerals': minerals, 'gr': group})
 
 
 def mineral_search(request):
+    """Mineral search view
+        request method GET, searches 'q' term in all fields using Q object
+        more in RESOURCES.txt
+    :return: - mineral_list.html + dictionary of mineral queries
+    """
     term = request.GET.get('q')
     # noinspection PyUnresolvedReferences
     fields = [field for field in Mineral._meta.fields if isinstance(field, CharField)]
@@ -92,18 +67,9 @@ def mineral_search(request):
                   {'minerals': minerals})
 
 
-def mineral_by_a(request):
-    try:
-        minerals = Mineral.objects.filter(name__startswith="A")
-    except Mineral.DoesNotExist:
-        raise Http404
-    return render(request, 'minerals/mineral_list.html',
-                  {'minerals': minerals})
-
-
 def random_mineral(request):
     """Mineral random view, selects a random mineral
-    :return: - mineeral_detail.html + dictionary of random mineral values
+    :return: - mineral_detail.html + dictionary of random mineral values
     """
     # noinspection PyUnresolvedReferences
     minerals = Mineral.objects.all().values()

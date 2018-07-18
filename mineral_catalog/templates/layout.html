@@ -37,8 +37,8 @@
 
         <div class="col-sm-6 d-flex justify-content-sm-start">
             <a href="{% url 'minerals:mineral_list' %}">
-                <h1 class="text-centered display-1 font-weight-bold custom"
-                    data-tip="Click to go back to list">Minerals
+                <h1 class="text-centered display-1 font-weight-bold tool span custom"
+                    data-tip="All Minerals">Minerals
                 </h1>
             </a>
         </div>
@@ -64,9 +64,9 @@
         </div>
 
 
+        <!-- ALPHABET Block, filter for mineral list -->
         {% block alphabet_list %}
         <div  class="col-sm-12 d-flex justify-content-sm-between alph">
-
             {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWYXZ" %}
                 {% if alpha == letter %}
                     <a class="text-primary font-weight-bold h3 dis" href="{% url 'minerals:mineral_alpha' alpha=letter %}">{{ letter }}</a>
@@ -78,23 +78,17 @@
         {% endblock %}
     </nav>
 
-<div class="sidenav">
-    <button class="dropdown-btn">Dropdown
-        <i class="fa fa-caret-down"></i>
-    </button>
-        <div class="dropdown-container">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-        </div>
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a>
+    <!-- Sidebar with filter -->
+    <div class="sidenav">
+        <h3 class="filter_title">Groups</h3>
+        <!--<button class="dropdown-btn">Group-->
+            <!--<i class="fa fa-caret-down"></i>-->
+        <!--</button>-->
+            <div class="dropdown-container">
+                {% group_list gr %}
+            </div>
 
-  <a href="#contact">Search</a>
-    {% mineral_group_list %}
-</div>
+    </div>
 
     <div class="bounds">
 

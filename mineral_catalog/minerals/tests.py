@@ -1,5 +1,5 @@
 from django.core.urlresolvers import reverse
-from django.test import Client, TestCase
+from django.test import TestCase
 
 from .models import Mineral
 
@@ -44,7 +44,6 @@ class MineralViewsTests(TestCase):
             optical_properties="Uniaxial (-)",
             refractive_index="nω = 1.597 – 1.608nε = 1.570"
         )
-        self.ct = Client()
 
     def test_mineral_detail_view(self):
         resp = self.client.get(reverse('minerals:mineral_detail', kwargs={'pk': self.mineral_1.id}))
@@ -55,7 +54,7 @@ class MineralViewsTests(TestCase):
     def test_random_mineral_view(self):
         minerals = set()
         for _ in range(15):
-            resp = self.ct.get('/minerals/random/')
+            resp = self.client.get('/minerals/random/')
             minerals.add(resp.context.get('pk'))
         self.assertEqual(len(minerals), 1)
 
@@ -66,3 +65,9 @@ class MineralViewsTests(TestCase):
         self.assertIn(self.mineral_2, resp.context['minerals'])
         self.assertTemplateUsed(resp, 'minerals/mineral_list.html')
         self.assertContains(resp, self.mineral_1.name)
+
+    def test_mineral_by_group_view(self):
+        resp = self.client.get(reverse('minerals:mineral_list'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'minerals/mineral_list.html')
+        self.assertContains(resp, self.mineral_1.group)

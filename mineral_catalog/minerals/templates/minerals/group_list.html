@@ -1,0 +1,13 @@
+{% load static %}
+
+{% for group in groups %}
+{% if gr == group %}
+    <a class="font-weight-bold h6 aktiv" href="{% url 'minerals:mineral_by_group' group=group %}">
+        {{ group }}
+    </a>
+{% else %}
+    <a class="font-weight-normal h6 inaktiv" href="{% url 'minerals:mineral_by_group' group=group %}">
+        {{ group }}
+    </a>
+{% endif %}
+{% endfor %}

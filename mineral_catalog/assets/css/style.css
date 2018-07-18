@@ -213,16 +213,6 @@ h1, h1 a {
     transform: scale(1) translateY(0);
 }
 
-.tool::before {
-    border-style: solid;
-    border-width: .23em .145em 0 .145em;
-    border-color: #345 transparent transparent transparent;
-    bottom: 100%;
-    margin-left: -0.5em;
-    content: "";
-    transform: scale(.6) translateY(-90%);
-    transition: all .65s cubic-bezier(.85, -0.18, .31, 1.26), .3s;
-}
 
 .tool:hover::before,
 .tool:focus::before {
@@ -232,13 +222,13 @@ h1, h1 a {
 .tool::after {
     background: #345;
     border-radius: .40em;
-    bottom: 114%;
-    font-size: 20%;
+    bottom: 100%;
+    font-size: 1.3rem;
     letter-spacing: normal;
     text-shadow: 0 0 0 #fff;
     color: #edeff0;
-    width: 7.5em;
-    padding: .3em;
+    width: 7.5rem;
+    padding: .3rem;
     margin-left: -5.50em;
     content: attr(data-tip);
     transform: scale(.6) translateY(50%);
@@ -248,6 +238,10 @@ h1, h1 a {
 .tool:hover::after,
 .tool:focus::after {
     transition-delay: .8s;
+}
+
+.span::after {
+    bottom: -100%;
 }
 
 span a {
@@ -292,7 +286,7 @@ span.tool::after {
 .alph {
     position: fixed;
     background-color: transparent;
-    padding: 0.7% 6% 0.6% 14%;
+    padding: 0.7% 6% 0.6% 6%;
     border: 0 solid transparent;
     background-color:  rgba(200, 200, 200, 0.4);
     width: 100%;
@@ -392,7 +386,6 @@ a:active, a:hover {
     border-color: transparent;
 }
 
-
 /* ####################### */
 /* Fixed sidenav, full height */
 .sidenav {
@@ -407,13 +400,10 @@ a:active, a:hover {
     padding-bottom: 40px;
 }
 
-
-
-/* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.6rem;
     color: #efefef;
     display: block;
     border: none;
@@ -428,9 +418,9 @@ a:active, a:hover {
     position: sticky;
     top: 0;
     left: 0;
-    color: #019;
+    color: #efefef;
     border-color: transparent;
-    background-color: rgba(200, 200, 200, 0.4)!important;
+    background-color: rgba(0, 17, 153, 0.43)!important;
 }
 
 .dropdown-btn:hover, .dropdown-btn:active,
@@ -438,38 +428,27 @@ a:active, a:hover {
     border-color: transparent;
 }
 
-/* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
     color: #f1f1f1;
 }
 
-/* Main content */
 .main {
     margin-left: 200px; /* Same as the width of the sidenav */
     font-size: 20px; /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
 
-/* Add an active class to the active dropdown button */
-.active {
-    background-color: green;
-    color: white;
-}
-
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
-    display: none;
-    background-color: rgba(200, 200, 200, 0.3)!important;
+    background-color: rgba(0, 17, 153, 0.43)!important;
     padding-left: 8px;
+    border-radius: 0 0 0.8rem .8rem;
 }
 
-/* Optional: Style the caret down icon */
 .fa-caret-down {
     float: right;
     padding-right: 8px;
 }
 
-/* Some media queries for responsiveness */
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
@@ -478,4 +457,21 @@ a:active, a:hover {
 
 .front {
     z-index: 2;
+}
+
+.aktiv, .aktiv:hover {
+    color: #efefef!important;
+}
+
+.inaktiv, .inaktiv:hover {
+    color: #bbf!important;
+}
+
+.filter_title {
+    background-color: rgba(0, 40, 240, 0.43)!important;
+    color: #019;
+    text-shadow: 2px 3px 3px #ccc;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0;
+    border-radius: .8rem .8rem 0 0;
 }
