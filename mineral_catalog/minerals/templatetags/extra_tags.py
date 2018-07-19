@@ -24,20 +24,33 @@ LABELS = [
 ]
 
 COLORS = [
-    'white',
-    'yellow',
-    'orange',
+    'black',
+    'blue',
+    'brown',
     'green',
     'grey',
-    'blue',
     'indigo',
-    'violet',
+    'orange',
     'pink',
+    'purple',
     'red',
     'rose',
-    'purple',
-    'brown',
-    'black'
+    'violet',
+    'white',
+    'yellow'
+]
+
+SYSTEM = [
+    'cubic',
+    'hexagonal',
+    'isometric',
+    'monoclinic',
+    'orthorhombic',
+    'prismatic',
+    'spheroidal',
+    'tetragonal',
+    'triclinic',
+    'trigonal'
 ]
 
 
