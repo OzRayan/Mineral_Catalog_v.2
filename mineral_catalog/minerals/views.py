@@ -20,7 +20,7 @@ def mineral_detail(request, pk):
 
 
 def mineral_by_alphabet(request, alpha):
-    """Mineral alphabet view
+    """Mineral by alphabet view
     :input: - alpha - mineral which starts with the letter alpha
     :return: - mineral_list.html + dictionary of mineral startswith alpha
     """
@@ -35,7 +35,7 @@ def mineral_by_alphabet(request, alpha):
 
 
 def mineral_by_group(request, group):
-    """Mineral group view
+    """Mineral by group view
     :input: - group - group name
     :return: - mineral_list.html + dictionary of mineral objects
     """
@@ -46,6 +46,20 @@ def mineral_by_group(request, group):
         raise Http404
     return render(request, 'minerals/mineral_list.html',
                   {'minerals': minerals, 'gr': group})
+
+
+def mineral_by_color(request, color):
+    """Mineral by color view
+    :input: - group - group name
+    :return: - mineral_list.html + dictionary of mineral objects
+    """
+    try:
+        # noinspection PyUnresolvedReferences
+        minerals = Mineral.objects.filter(color__icontains=color)
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals, 'cl': color})
 
 
 def mineral_search(request):

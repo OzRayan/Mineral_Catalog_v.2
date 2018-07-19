@@ -23,6 +23,23 @@ LABELS = [
     'luster',
 ]
 
+COLORS = [
+    'white',
+    'yellow',
+    'orange',
+    'green',
+    'grey',
+    'blue',
+    'indigo',
+    'violet',
+    'pink',
+    'red',
+    'rose',
+    'purple',
+    'brown',
+    'black'
+]
+
 
 # Remove _ from field name
 @register.filter
@@ -37,9 +54,9 @@ def check(field):
         return True
 
 
-@register.simple_tag
-def filters():
-    return FILTERS
+@register.inclusion_tag('minerals/color_list.html')
+def color_list(cl):
+    return {'colors': COLORS, 'cl': cl}
 
 
 @register.inclusion_tag('minerals/group_list.html')

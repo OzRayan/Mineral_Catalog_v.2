@@ -80,14 +80,20 @@
 
     <!-- Sidebar with filter -->
     <div class="sidenav">
-        <h3 class="filter_title">Groups</h3>
-        <!--<button class="dropdown-btn">Group-->
-            <!--<i class="fa fa-caret-down"></i>-->
-        <!--</button>-->
+        <h3 class="filter_title">Filter by:</h3>
+        <button class="dropdown-btn">Group
+            <i class="fa fa-caret-down"></i>
+        </button>
             <div class="dropdown-container">
                 {% group_list gr %}
             </div>
 
+        <button class="dropdown-btn">Color
+            <i class="fa fa-caret-down"></i>
+        </button>
+            <div class="dropdown-container">
+                {% color_list cl %}
+            </div>
     </div>
 
     <div class="bounds">
