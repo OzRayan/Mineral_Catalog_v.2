@@ -72,6 +72,11 @@ def color_list(cl):
     return {'colors': COLORS, 'cl': cl}
 
 
+@register.inclusion_tag('minerals/crystal_list.html')
+def crystal_list(cr):
+    return {'crystals': SYSTEM, 'cr': cr}
+
+
 @register.inclusion_tag('minerals/group_list.html')
 def group_list(gr):
     """Returns dict of mineral groups to display in filter"""

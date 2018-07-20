@@ -16,6 +16,8 @@ urlpatterns = [
         name='mineral_by_group'),
     url(r'by_color/(?P<color>\w+)/$', views.mineral_by_color,
         name='mineral_by_color'),
+    url(r'by_crystal/(?P<crystal>\w+)/$', views.mineral_by_crystal_system,
+        name='mineral_by_crystal'),
     url(r'search/$', views.mineral_search,
         name='mineral_search'),
 ]

@@ -50,7 +50,7 @@ def mineral_by_group(request, group):
 
 def mineral_by_color(request, color):
     """Mineral by color view
-    :input: - group - group name
+    :input: - color - color name
     :return: - mineral_list.html + dictionary of mineral objects
     """
     try:
@@ -60,6 +60,20 @@ def mineral_by_color(request, color):
         raise Http404
     return render(request, 'minerals/mineral_list.html',
                   {'minerals': minerals, 'cl': color})
+
+
+def mineral_by_crystal_system(request, crystal):
+    """Mineral by crystal system view
+    :input: - crystal - crystal system name
+    :return: - mineral_list.html + dictionary of mineral objects
+    """
+    try:
+        # noinspection PyUnresolvedReferences
+        minerals = Mineral.objects.filter(crystal_system__icontains=crystal)
+    except Mineral.DoesNotExist:
+        raise Http404
+    return render(request, 'minerals/mineral_list.html',
+                  {'minerals': minerals, 'cr': crystal})
 
 
 def mineral_search(request):

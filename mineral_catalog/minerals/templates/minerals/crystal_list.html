@@ -1,0 +1,13 @@
+{% load static %}
+
+{% for crystal in crystals %}
+{% if cr == crystal %}
+    <a class="font-weight-bold h6 aktiv" href="{% url 'minerals:mineral_by_crystal' crystal=crystal %}">
+        {{ crystal }}
+    </a>
+{% else %}
+    <a class="font-weight-normal h6 inaktiv" href="{% url 'minerals:mineral_by_crystal' crystal=crystal %}">
+        {{ crystal }}
+    </a>
+{% endif %}
+{% endfor %}

@@ -441,7 +441,7 @@ a:active, a:hover {
 .dropdown-container {
     background-color: rgba(0, 17, 153, 0.43)!important;
     padding-left: 8px;
-    border-radius: 0 0 0.8rem 0;
+    border-radius: 0 0 0 0;
 }
 
 .fa-caret-down {
