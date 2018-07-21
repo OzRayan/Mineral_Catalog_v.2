@@ -11,4 +11,4 @@
 
 ### For the first start, run in console, inside mineral_catalog directory:
 * ```python manage.py migrate```
-* ```python _fixtures.py```
+* ```python _fixture.py```

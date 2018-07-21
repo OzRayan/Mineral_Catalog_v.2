@@ -75,5 +75,5 @@ class MineralViewsTests(TestCase):
     def test_mineral_by_color_view(self):
         resp = self.client.get(reverse('minerals:mineral_list'))
         self.assertEqual(resp.status_code, 200)
-        self.assertTemplateUsed(resp, 'minerals/color_list.html')
+        self.assertTemplateUsed(resp, 'minerals/mineral_list.html')
         self.assertContains(resp, 'purple')
