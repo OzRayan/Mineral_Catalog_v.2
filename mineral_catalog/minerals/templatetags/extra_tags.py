@@ -67,6 +67,13 @@ def check(field):
         return True
 
 
+@register.inclusion_tag('minerals/search_list.html')
+def search_list():
+    fields = Mineral._meta.fields[1:]
+    fields = fields[::-1]
+    return {'fields': fields}
+
+
 @register.inclusion_tag('minerals/color_list.html')
 def color_list(cl):
     return {'colors': COLORS, 'cl': cl}

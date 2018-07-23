@@ -76,23 +76,30 @@ def mineral_by_crystal_system(request, crystal):
                   {'minerals': minerals, 'cr': crystal})
 
 
-def mineral_search(request):
+def mineral_search(request):   # fd parameter for field name
     """Mineral search view
         request method GET, searches 'q' term in all fields using Q object
         more in RESOURCES.txt
     :return: - mineral_list.html + dictionary of mineral queries
     """
     term = request.GET.get('q')
-    # # noinspection PyUnresolvedReferences
-    # fields = [field for field in Mineral._meta.fields if isinstance(field, CharField)]
+    # noinspection PyUnresolvedReferences
+    fields = [field for field in Mineral._meta.fields if isinstance(field, CharField)]
+    queries = [Q(**{field.name + '__icontains': term}) for field in fields]
+    query_set = Q()
+    for query in queries:
+        query_set = query_set | query
+
+    # noinspection PyUnresolvedReferences
+    minerals = Mineral.objects.filter(query_set)
+
+    # fields = [field for field in Mineral._meta.fields if Mineral._meta.fields.name is fd]
     # queries = [Q(**{field.name + '__icontains': term}) for field in fields]
     # query_set = Q()
     # for query in queries:
     #     query_set = query_set | query
-    # # noinspection PyUnresolvedReferences
+    #
     # minerals = Mineral.objects.filter(query_set)
-
-    minerals = Mineral.objects.filter(name__icontains=term)
 
     return render(request, 'minerals/mineral_list.html',
                   {'minerals': minerals})

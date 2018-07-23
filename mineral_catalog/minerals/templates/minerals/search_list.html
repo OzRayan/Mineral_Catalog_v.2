@@ -1,0 +1,7 @@
+
+<select name="mySelect" id="mySelect" onchange="setValue();" class="frame">
+{% for field in fields %}
+    <option value="{{ field.name }}" selected="">{{ field.name }} </option>
+{% endfor %}
+</select>
+
