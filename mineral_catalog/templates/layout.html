@@ -54,13 +54,16 @@
 
         <div class="col-sm-4 d-flex justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
             <!--<select name="mySelect" id="mySelect" onchange="setValue();">-->
-                <!--<option value="1" selected="">Item 1</option>-->
-                <!--<option value="2">Item 2</option>-->
+                <!--<option value="name" selected="">Name</option>-->
+                <!--<option value="category">Item 2</option>-->
                 <!--<option value="3">Item 3</option>-->
                 <!--<option value="4">Item 4</option>-->
             <!--</select>-->
-            {% search_list %}
-            <form method="GET" action="{% url 'minerals:mineral_search' %}" class="form-inline my-2 my-lg-0">
+            <form method="GET" action="{% url 'minerals:mineral_search' %}" name="mySelect" class="form-inline my-2 my-lg-0">
+                <select name="mySelect" id="mySelect" onchange="setValue();">
+                    <option value="name" selected="">Name</option>
+                    <option value="category">Category</option>
+                </select>
                 <input class="form-control mr-sm-2 frame"
                        type="search"
                        placeholder="Find..."

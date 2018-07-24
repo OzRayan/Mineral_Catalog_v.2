@@ -82,25 +82,20 @@ def mineral_search(request):   # fd parameter for field name
         more in RESOURCES.txt
     :return: - mineral_list.html + dictionary of mineral queries
     """
+    fields = None
     term = request.GET.get('q')
-    # noinspection PyUnresolvedReferences
-    fields = [field for field in Mineral._meta.fields if isinstance(field, CharField)]
+    fd = request.GET.get('mySelect')
+    if fd != 'All':
+        # noinspection PyUnresolvedReferences
+        fields = [field for field in Mineral._meta.fields if field.name == fd]
+    else:
+        fields = [field for field in Mineral._meta.fields if isinstance(field, CharField)]
     queries = [Q(**{field.name + '__icontains': term}) for field in fields]
     query_set = Q()
     for query in queries:
         query_set = query_set | query
 
-    # noinspection PyUnresolvedReferences
     minerals = Mineral.objects.filter(query_set)
-
-    # fields = [field for field in Mineral._meta.fields if Mineral._meta.fields.name is fd]
-    # queries = [Q(**{field.name + '__icontains': term}) for field in fields]
-    # query_set = Q()
-    # for query in queries:
-    #     query_set = query_set | query
-    #
-    # minerals = Mineral.objects.filter(query_set)
-
     return render(request, 'minerals/mineral_list.html',
                   {'minerals': minerals})
 
