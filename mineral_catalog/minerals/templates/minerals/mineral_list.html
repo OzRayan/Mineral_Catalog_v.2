@@ -8,16 +8,31 @@
     with flex property,
     the buttom part of the item continues on the next column top -->
     <ul class="minerals__container">
+        {% if minerals.count != 0 %}
         {% for mineral in minerals %}
-        <li class=" list-group-item">
-            <a class="minerals__anchor"
-               href="{% url 'minerals:mineral_detail' pk=mineral.id %}"
-               {% if minerals.count == 1 %}
-               style="display: inline-block;"
-               {% endif %}>{{ mineral.name }}
-            </a>
-        </li>
+            <li class=" list-group-item">
+
+                <!-- checks if only one mineral to center the block -->
+                <a class="minerals__anchor"
+                   href="{% url 'minerals:mineral_detail' pk=mineral.id %}"
+                   {% if minerals.count == 1 %}
+                   style="display: inline-block;"
+                   {% endif %}>{{ mineral.name }}
+                </a>
+
+            </li>
         {% endfor %}
+
+        <!-- alert message if no mineral was found -->
+        {% elif minerals.count == 0 %}
+            <li class=" list-group-item">
+                <h3 class="minerals__anchor" style="display: inline-block;
+                                             font-size: 1.7rem;
+                                             color: #f35;">
+                    No minerals was found with this search
+                </h3>
+            </li>
+        {% endif %}
     </ul>
 </div>
 {% endblock %}

@@ -53,23 +53,37 @@
         <!--</div>-->
 
         <div class="col-sm-4 d-flex justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
-            <!--<select name="mySelect" id="mySelect" onchange="setValue();">-->
-                <!--<option value="name" selected="">Name</option>-->
-                <!--<option value="category">Item 2</option>-->
-                <!--<option value="3">Item 3</option>-->
-                <!--<option value="4">Item 4</option>-->
-            <!--</select>-->
-            <form method="GET" action="{% url 'minerals:mineral_search' %}" name="mySelect" class="form-inline my-2 my-lg-0">
-                <select name="mySelect" id="mySelect" onchange="setValue();">
-                    <option value="name" selected="">Name</option>
+            <form method="GET" action="{% url 'minerals:mineral_search' %}"
+                  name="mySelect" class="form-inline my-2 my-lg-0">
+
+                <select name="mySelect" id="mySelect" onchange="setValue();" class="form-inline mr-sm-2 h2 frame ">
+                    <option value="all" selected="">All</option>
+                    <option value="name">Name</option>
                     <option value="category">Category</option>
+                    <option value="group">Group</option>
+                    <option value="formula">Formula</option>
+                    <option value="strunz_classification">Strunz Classification</option>
+                    <option value="color">Color</option>
+                    <option value="crystal_system">Crystal System</option>
+                    <option value="unit_cell">Unit Cell</option>
+                    <option value="crystal_symmetry">Crystal Symmetry</option>
+                    <option value="cleavage">Cleavage</option>
+                    <option value="mohs_scale_hardness">Mohs Scale Hardness</option>
+                    <option value="luster">Luster</option>
+                    <option value="streak">Streak</option>
+                    <option value="diaphaneity">Diaphaneity</option>
+                    <option value="optical_properties">Optical Properties</option>
+                    <option value="refractive_index">Refractive Index</option>
+                    <option value="crystal_habit">Crystal Habit</option>
+                    <option value="specific_gravity">Specific Gravity</option>
                 </select>
-                <input class="form-control mr-sm-2 frame"
+                <input class="form-control mr-sm-2 h5 frame"
                        type="search"
-                       placeholder="Find..."
+                       placeholder="Search..."
                        aria-label="Search"
                        name="q">
-                 <button class="btn btn-outline-light my-2 my-sm-0 gomb" type="submit">&#128269;</button>
+                <button class="btn btn-outline-light my-2 my-sm-0 gomb" type="submit">&#128269;</button>
+
             </form>
         </div>
 
@@ -91,34 +105,26 @@
     <!-- Sidebar with filter -->
     <div class="sidenav">
         <h3 class="filter_title">Filter by:</h3>
-        <button class="dropdown-btn">Group
-            <i class="fa fa-caret-down"></i>
-        </button>
-            <div class="dropdown-container">
-                {% group_list gr %}
-            </div>
+        <button class="dropdown-btn">Group</button>
+        <div class="dropdown-container">
+            {% group_list gr %}
+        </div>
 
-        <button class="dropdown-btn">Color
-            <i class="fa fa-caret-down"></i>
-        </button>
-            <div class="dropdown-container">
-                {% color_list cl %}
-            </div>
+        <button class="dropdown-btn">Color</button>
+        <div class="dropdown-container">
+            {% color_list cl %}
+        </div>
 
-        <button class="dropdown-btn">Crystal System
-            <i class="fa fa-caret-down"></i>
-        </button>
-            <div class="dropdown-container">
-                {% crystal_list cr %}
-            </div>
+        <button class="dropdown-btn right-border">Crystal System</button>
+        <div class="dropdown-container">
+            {% crystal_list cr %}
+        </div>
     </div>
 
     <div class="bounds">
-
         <!-- Mineral content -->
         {% block content %}{% endblock %}
     </div>
-
 
     <!-- Random mineral button -->
     <div class="minerals__random">

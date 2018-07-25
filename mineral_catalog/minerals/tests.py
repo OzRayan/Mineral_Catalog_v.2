@@ -67,13 +67,39 @@ class MineralViewsTests(TestCase):
         self.assertContains(resp, self.mineral_1.name)
 
     def test_mineral_by_group_view(self):
-        resp = self.client.get(reverse('minerals:mineral_list'))
+        resp = self.client.get(reverse('minerals:mineral_by_group', kwargs={'group': self.mineral_1.group}))
         self.assertEqual(resp.status_code, 200)
-        self.assertTemplateUsed(resp, 'minerals/mineral_list.html')
-        self.assertContains(resp, self.mineral_1.group)
+        self.assertTemplateUsed(resp, 'minerals/group_list.html')
+        self.assertContains(resp, 'Organic Minerals')
 
     def test_mineral_by_color_view(self):
-        resp = self.client.get(reverse('minerals:mineral_list'))
+        resp = self.client.get(reverse('minerals:mineral_by_color', kwargs={'color': self.mineral_2.color}))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'minerals/color_list.html')
+        self.assertContains(resp, 'Yellow')
+
+    def test_mineral_by_crystal_system(self):
+        resp = self.client.get(reverse('minerals:mineral_by_crystal',
+                                       kwargs={'crystal': self.mineral_2.crystal_system}))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'minerals/crystal_list.html')
+        self.assertContains(resp, 'Tetragonal')
+
+    def test_mineral_by_alphabet(self):
+        resp = self.client.get(reverse('minerals:mineral_alpha',
+                                       kwargs={'alpha': 'A'}))
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'minerals/mineral_list.html')
-        self.assertContains(resp, 'purple')
+        self.assertContains(resp, self.mineral_1.name)
+        self.assertContains(resp, self.mineral_2.name)
+
+    def test_search_mineral(self):
+        resp = self.client.get('/minerals/search/?mySelect=category&?q=Organic')
+        self.assertEqual(resp.status_code, 404)
+
+    def test_index(self):
+        resp = self.client.get(reverse('index'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'index.html')
+        self.assertContains(resp, self.mineral_1.name)
+        self.assertContains(resp, self.mineral_2.name)

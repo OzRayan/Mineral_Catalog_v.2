@@ -1,3 +1,7 @@
+html {
+    height: scroll;
+}
+
 .page-bg {
     background: url('../base_img/img_2.jpg') no-repeat;
     background-size: cover;
@@ -342,8 +346,8 @@ a:active, a:hover {
     color: #019!important;
     font-style: bold;
     border: solid 1px #019;
-    border-radius: 3px;
-    padding: 1px 4px;
+    border-radius: .25rem;
+    padding: auto 3px;
 }
 
 .dis:hover {
@@ -369,8 +373,13 @@ a:active, a:hover {
 
 .frame {
     border-color: transparent;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     background-color: rgba(240, 240, 240, 0.8);
+    color: #019;
+}
+
+input:-webkit- {
+    background-color: rgba(200, 200, 200, 0.8)!important;
 }
 
 .gomb {
@@ -389,7 +398,7 @@ a:active, a:hover {
 /* ####################### */
 /* Fixed sidenav, full height */
 .sidenav {
-    height: 100%;
+    height: 75%;
     width: 180px;
     position: fixed;
     z-index: 1;
@@ -415,7 +424,7 @@ a:active, a:hover {
 }
 
 .dropdown-btn {
-    position: sticky;
+    position: relative;
     top: 0;
     left: 0;
     color: #efefef;
@@ -439,14 +448,18 @@ a:active, a:hover {
 }
 
 .dropdown-container {
-    background-color: rgba(0, 17, 153, 0.43)!important;
+    background-color: rgba(15, 78, 153, 0.43)!important;
     padding-left: 8px;
-    border-radius: 0 0 0 0;
+    border-radius: 0 0 .8rem 0;
+}
+
+.right-border {
+    border-radius: 0 0 .8rem 0;
 }
 
 .fa-caret-down {
     float: right;
-    padding-right: 8px;
+    padding-right: 40px;
 }
 
 @media screen and (max-height: 450px) {

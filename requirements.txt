@@ -1,6 +1,10 @@
+certifi==2018.4.16
 coverage==4.0.3
 Django==1.9.9
 django-debug-toolbar==1.9.1
 markdown2==2.3.5
+pipenv==2018.7.1
 pytz==2018.5
 sqlparse==0.2.4
+virtualenv==16.0.0
+virtualenv-clone==0.3.0

@@ -1,6 +1,6 @@
 from django import template
 
-from minerals.models import Mineral
+import minerals.models
 
 
 register = template.Library()
@@ -23,6 +23,7 @@ LABELS = [
     'luster',
 ]
 
+# Displayed color options for mineral
 COLORS = [
     'black',
     'blue',
@@ -40,6 +41,7 @@ COLORS = [
     'yellow'
 ]
 
+# Displayed crystal system options for mineral
 SYSTEM = [
     'cubic',
     'hexagonal',
@@ -67,26 +69,21 @@ def check(field):
         return True
 
 
-@register.inclusion_tag('minerals/search_list.html')
-def search_list():
-    fields = Mineral._meta.fields[1:]
-    fields = fields[::-1]
-    return {'fields': fields}
-
-
 @register.inclusion_tag('minerals/color_list.html')
 def color_list(cl):
+    """Returns a dict of color list and 'cl' :param for color_list.html"""
     return {'colors': COLORS, 'cl': cl}
 
 
 @register.inclusion_tag('minerals/crystal_list.html')
 def crystal_list(cr):
+    """Returns a dict of crystal system list and 'cr' :param for crystal_list.html"""
     return {'crystals': SYSTEM, 'cr': cr}
 
 
 @register.inclusion_tag('minerals/group_list.html')
 def group_list(gr):
-    """Returns dict of mineral groups to display in filter"""
-    groups = Mineral.objects.values_list('group', flat=True).distinct()
+    """Returns a dict of group list and 'gr' :param for group_list.html"""
+    groups = minerals.models.Mineral.objects.values_list('group', flat=True).distinct()
     return {'groups': groups, 'gr': gr}
 
