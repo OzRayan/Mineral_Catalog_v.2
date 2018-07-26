@@ -5,7 +5,10 @@ from .models import Mineral
 
 
 class MineralViewsTests(TestCase):
+    """Views test class"""
     def setUp(self):
+        """setUp method
+        - Prepares 2 minerals for testing"""
         self.mineral_1 = Mineral.objects.create(
             name="Abelsonite",
             image_filename="240px-Abelsonite_-_Green_River_Formation%2C_Uintah_County%2C_Utah%2C_USA.jpg",
@@ -46,12 +49,18 @@ class MineralViewsTests(TestCase):
         )
 
     def test_mineral_detail_view(self):
+        """Mineral detail test
+        - tests status code
+        - tests mineral id
+        - tests template used"""
         resp = self.client.get(reverse('minerals:mineral_detail', kwargs={'pk': self.mineral_1.id}))
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(self.mineral_1.id, resp.context['mineral']['id'])
         self.assertTemplateUsed(resp, 'minerals/mineral_detail.html')
 
     def test_random_mineral_view(self):
+        """Mineral random test
+        - tests lenght of random minerals, correct = 1"""
         minerals = set()
         for _ in range(15):
             resp = self.client.get('/minerals/random/')
@@ -59,6 +68,11 @@ class MineralViewsTests(TestCase):
         self.assertEqual(len(minerals), 1)
 
     def test_mineral_list_view(self):
+        """Minerals list test
+        - tests status code
+        - tests if mineral_1 and mineral_2 is in list
+        - tests template used
+        - tests if response contains mineral_1 name field"""
         resp = self.client.get(reverse('minerals:mineral_list'))
         self.assertEqual(resp.status_code, 200)
         self.assertIn(self.mineral_1, resp.context['minerals'])
@@ -67,18 +81,30 @@ class MineralViewsTests(TestCase):
         self.assertContains(resp, self.mineral_1.name)
 
     def test_mineral_by_group_view(self):
+        """Mineral group test
+        - tests status code
+        - tests template used
+        - tests if response contain the group of <Organic Minerals>"""
         resp = self.client.get(reverse('minerals:mineral_by_group', kwargs={'group': self.mineral_1.group}))
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'minerals/group_list.html')
         self.assertContains(resp, 'Organic Minerals')
 
     def test_mineral_by_color_view(self):
+        """Mineral color test
+        - tests status code
+        - tests template used
+        - tests if response contain the color of <Yellow>"""
         resp = self.client.get(reverse('minerals:mineral_by_color', kwargs={'color': self.mineral_2.color}))
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'minerals/color_list.html')
         self.assertContains(resp, 'Yellow')
 
     def test_mineral_by_crystal_system(self):
+        """Mineral crystal system test
+        - tests status code
+        - tests template used
+        - tests if response contain the crystal system  of <Tetragonal>"""
         resp = self.client.get(reverse('minerals:mineral_by_crystal',
                                        kwargs={'crystal': self.mineral_2.crystal_system}))
         self.assertEqual(resp.status_code, 200)
@@ -86,6 +112,10 @@ class MineralViewsTests(TestCase):
         self.assertContains(resp, 'Tetragonal')
 
     def test_mineral_by_alphabet(self):
+        """Mineral starts with alphabet test
+        - tests status code
+        - tests template used
+        - tests is response contains mineral_1 and mineral_2 name"""
         resp = self.client.get(reverse('minerals:mineral_alpha',
                                        kwargs={'alpha': 'A'}))
         self.assertEqual(resp.status_code, 200)
@@ -94,10 +124,16 @@ class MineralViewsTests(TestCase):
         self.assertContains(resp, self.mineral_2.name)
 
     def test_search_mineral(self):
+        """Mineral search test
+        - tests status code"""
         resp = self.client.get('/minerals/search/?mySelect=category&?q=Organic')
         self.assertEqual(resp.status_code, 404)
 
     def test_index(self):
+        """Mineral starts with A test for index view
+        - tests status code
+        - tests templated used
+        - tests if response contains mineral_1 and mineral_2 name which starts with A"""
         resp = self.client.get(reverse('index'))
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'index.html')
