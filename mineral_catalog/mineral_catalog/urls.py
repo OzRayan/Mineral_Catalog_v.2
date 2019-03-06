@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.urls import re_path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from . import views
 
 
 urlpatterns = [
-    url(r'^mineral/', include('minerals.urls', namespace='minerals')),
+    url(r'^mineral/', include(('minerals.urls', 'minerals'), namespace='minerals')),
     url(r'^$', views.index, name='index'),
     url('admin/', admin.site.urls),
 ]
@@ -29,6 +30,6 @@ urlpatterns = [
 # Setting up urlpatterns for django-debug-toolbar(version==1.9.1)
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns += url(r'^__debug__/', include(debug_toolbar.urls)),
+    urlpatterns += re_path(r'^__debug__/', include(debug_toolbar.urls)),
 
 urlpatterns += staticfiles_urlpatterns()
