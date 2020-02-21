@@ -1,7 +1,7 @@
 import random
 
 from django.db.models import Q    # , CharField  ### for mineral_search()
-from django.shortcuts import Http404, render
+from django.shortcuts import Http404, render, get_object_or_404
 
 from .models import Mineral
 

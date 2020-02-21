@@ -1,8 +1,8 @@
 certifi==2018.4.16
 coverage==4.0.3
-Django==2.1.7
+Django==2.2.10
 django-debug-toolbar==1.9.1
-markdown2==2.3.5
+markdown2==2.3.6
 pipenv==2018.7.1
 pytz==2018.5
 sqlparse==0.2.4
