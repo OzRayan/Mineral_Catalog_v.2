@@ -21,7 +21,6 @@
                 "sha256:7e51911ee147dd685c3c8b805c0ad0cb58d360987b56953878f8c06d2d1c6f1a",
                 "sha256:9fc6fb5d39b8af147ba40765234fa822b39818b12cc80b35ad9b0cef3a476aed"
             ],
-            "markers": "python_version >= '3.5'",
             "version": "==3.2.10"
         },
         "django": {
@@ -30,7 +29,6 @@
                 "sha256:b5fbb818e751f660fa2d576d9f40c34a4c615c8b48dd383f5216e609f383371f"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.5'",
             "version": "==3.1.1"
         },
         "django-debug-toolbar": {
@@ -43,11 +41,11 @@
         },
         "markdown2": {
             "hashes": [
-                "sha256:89526090907ae5ece66d783c434b35c29ee500c1986309e306ce2346273ada6a",
-                "sha256:e6b401ec80b75e76a6b3dbb2c8ade513156fa55fa6c30b9640a1abf6184a07c8"
+                "sha256:28d769f0e544e6f68f684f01e9b186747b079a6927d9ca77ebc8c640a2829b1b",
+                "sha256:8d4ef4a2d090c99532069c4611a9a2b9bea6ae1fa29b6c3727c95d1e31a8f6c5"
             ],
             "index": "pypi",
-            "version": "==2.3.9"
+            "version": "==2.4.0"
         },
         "pytz": {
             "hashes": [
